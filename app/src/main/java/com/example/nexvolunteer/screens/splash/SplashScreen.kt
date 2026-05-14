@@ -28,13 +28,7 @@ fun SplashScreen(
     }
 
     val alphaAnim by animateFloatAsState(
-
-        targetValue = if (startAnimation)
-            1f else 0f,
-
-        animationSpec = tween(2000),
-
-        label = ""
+        targetValue = if (startAnimation) 1f else 0f, animationSpec = tween(2000), label = ""
     )
 
     LaunchedEffect(true) {
@@ -43,11 +37,7 @@ fun SplashScreen(
 
         delay(2500)
 
-        navController.navigate(
-
-            Routes.Login.route
-        ) {
-
+        navController.navigate(Routes.Login.route) {
             popUpTo(0)
         }
     }
@@ -61,32 +51,16 @@ fun SplashScreen(
 
         Column(
 
-            horizontalAlignment =
-                Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally,
 
             modifier = Modifier.alpha(alphaAnim)
         ) {
 
-            Image(
+            Image(painter = painterResource(id = R.drawable.logo), contentDescription = null)
 
-                painter = painterResource(
-                    id = R.drawable.logo
-                ),
+            Spacer(modifier = Modifier.height(16.dp))
 
-                contentDescription = null
-            )
-
-            Spacer(
-                modifier = Modifier.height(16.dp)
-            )
-
-            Text(
-
-                text = "NexVolunteer",
-
-                style =
-                    MaterialTheme.typography.headlineMedium
-            )
+            Text(text = "NexVolunteer", style = MaterialTheme.typography.headlineMedium)
         }
     }
 }
