@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "306972864619",
+    "project_id": "hacka-c141a",
+    "storage_bucket": "hacka-c141a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306972864619:android:13a0938eae6d7ffee8412e",
+        "android_client_info": {
+          "package_name": "com.example.hacka"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByVwU4Z6n1q55qwA2pAsQ8cYMq3QXYCFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306972864619:android:d366d91e28c77479e8412e",
+        "android_client_info": {
+          "package_name": "com.example.nexvolunteer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByVwU4Z6n1q55qwA2pAsQ8cYMq3QXYCFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306972864619:android:5a30b7bce497fb9de8412e",
+        "android_client_info": {
+          "package_name": "com.example.nexvolunter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByVwU4Z6n1q55qwA2pAsQ8cYMq3QXYCFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
