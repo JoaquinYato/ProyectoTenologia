@@ -26,4 +26,6 @@ sealed class Routes(val route: String) {
 
     object Splash :
         Routes("splash")
+
+    object Dashboard : Routes("dashboard")
 }

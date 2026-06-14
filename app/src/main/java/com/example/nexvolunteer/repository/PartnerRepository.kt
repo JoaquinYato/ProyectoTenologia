@@ -1,12 +1,16 @@
 package com.example.nexvolunteer.repository
 
 import com.example.nexvolunteer.model.Event
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PartnerRepository {
 
     private val db =
         FirebaseFirestore.getInstance()
+
+    private val currentUid =
+        FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     fun getAllEvents(
 
@@ -16,6 +20,11 @@ class PartnerRepository {
     ) {
 
         db.collection("events")
+
+            .whereEqualTo(
+                "creadorId",
+                currentUid
+            )
 
             .get()
 
@@ -46,9 +55,7 @@ class PartnerRepository {
             .document(eventId)
 
             .update(
-
                 "aprobado",
-
                 true
             )
 
@@ -76,11 +83,33 @@ class PartnerRepository {
             .document(eventId)
 
             .update(
-
                 "destacado",
-
                 true
             )
+
+            .addOnSuccessListener {
+
+                onSuccess()
+            }
+
+            .addOnFailureListener {
+
+                onError(it.message ?: "Error")
+            }
+    }
+
+    fun deleteEvent(
+
+        eventId: String,
+
+        onSuccess: () -> Unit,
+
+        onError: (String) -> Unit
+    ) {
+
+        db.collection("events")
+            .document(eventId)
+            .delete()
 
             .addOnSuccessListener {
 

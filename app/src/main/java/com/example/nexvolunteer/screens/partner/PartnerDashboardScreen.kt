@@ -40,6 +40,11 @@ fun PartnerDashboardScreen(
             it.destacado
         }
 
+    val totalParticipantes =
+        viewModel.events.sumOf {
+            it.participantes
+        }
+
     Column(
 
         modifier = Modifier
@@ -75,7 +80,8 @@ fun PartnerDashboardScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                Text("⭐ Destacados: $featuredEvents")
+                Text(
+                    text = "👥 Participantes Totales: $totalParticipantes")
             }
         }
 

@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.nexvolunteer.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.example.nexvolunteer.utils.RankUtils
 
 @Composable
 fun ProfileScreen() {
@@ -44,34 +45,86 @@ fun ProfileScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text("👤 ${user.nombre} ${user.apellido}")
+        Text(
+
+            text = "👤 ${user.nombre} ${user.apellido}",
+
+            style = MaterialTheme.typography.titleLarge
+        )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         Text("📧 ${user.correo}")
 
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Text(
+
+            text = user.rango,
+
+            style = MaterialTheme.typography.titleMedium
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        LinearProgressIndicator(
+
+            progress = {
+
+                RankUtils.getProgress(
+                    user.eventosAsistidos.size
+                )
+            },
+
+            modifier = Modifier.fillMaxWidth()
+        )
+
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text("🏆 ${user.rango}")
+        Text("⭐ XP: ${user.xp}")
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
-        Text("🎯 Eventos asistidos: ${user.eventosAsistidos}")
+        Text(
+
+            text = "🎯 Eventos asistidos: ${user.eventosAsistidos.size}"
+        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
 
-            text = "Historial",
+            text = "Historial de eventos",
 
             style = MaterialTheme.typography.titleMedium
         )
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        user.historialEventos.forEach {
+        if (user.eventosAsistidos.isEmpty()) {
 
-            Text("• Evento ID: $it")
+            Text("Aún no participas en eventos")
+
+        } else {
+
+            user.eventosAsistidos.forEach {
+
+                Card(
+
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 6.dp)
+
+                ) {
+
+                    Text(
+
+                        text = "Evento ID: $it",
+
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+            }
         }
     }
 }

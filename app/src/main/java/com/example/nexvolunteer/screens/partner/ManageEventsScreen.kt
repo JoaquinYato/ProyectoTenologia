@@ -60,7 +60,11 @@ fun ManageEventsScreen() {
 
                     Text(event.descripcion)
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Text(
+                        text = "👥 Participantes: ${event.participantes}"
+                    )
 
                     Row {
 
@@ -75,13 +79,9 @@ fun ManageEventsScreen() {
                                     onSuccess = {
 
                                         Toast.makeText(
-
                                             context,
-
                                             "Evento aprobado",
-
                                             Toast.LENGTH_LONG
-
                                         ).show()
 
                                         viewModel.loadEvents()
@@ -113,13 +113,9 @@ fun ManageEventsScreen() {
                                     onSuccess = {
 
                                         Toast.makeText(
-
                                             context,
-
                                             "Evento destacado",
-
                                             Toast.LENGTH_LONG
-
                                         ).show()
 
                                         viewModel.loadEvents()
@@ -134,6 +130,45 @@ fun ManageEventsScreen() {
                         ) {
 
                             Text("Destacar")
+                        }
+
+                        Spacer(
+                            modifier = Modifier.width(10.dp)
+                        )
+
+                        Button(
+
+                            onClick = {
+
+                                viewModel.deleteEvent(
+
+                                    event.id,
+
+                                    onSuccess = {
+
+                                        Toast.makeText(
+                                            context,
+                                            "Evento eliminado",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+
+                                        viewModel.loadEvents()
+                                    },
+
+                                    onError = {
+
+                                        Toast.makeText(
+                                            context,
+                                            it,
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                )
+                            }
+
+                        ) {
+
+                            Text("Eliminar")
                         }
                     }
                 }

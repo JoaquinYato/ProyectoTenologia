@@ -67,4 +67,17 @@ class PartnerViewModel : ViewModel() {
             onError
         )
     }
+
+    fun deleteEvent(
+        eventId: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+
+        repository.deleteEvent(
+            eventId,
+            onSuccess,
+            onError
+        )
+    }
 }

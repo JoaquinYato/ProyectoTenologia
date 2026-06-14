@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.nexvolunteer.navigation.Routes
+import androidx.compose.material.icons.filled.BarChart
 
 @Composable
 fun BottomBar(
@@ -38,7 +39,15 @@ fun BottomBar(
             Routes.Profile.route,
             "Perfil",
             Icons.Default.Person
+        ),
+
+        Triple(
+            Routes.Dashboard.route,
+            "Dashboard",
+            Icons.Default.BarChart
         )
+
+
     )
 
     NavigationBar {

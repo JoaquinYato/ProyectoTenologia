@@ -59,4 +59,55 @@ class EventRepository {
                 onError(it.message ?: "Error")
             }
     }
+
+    fun deleteEvent(
+        eventId: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+
+        db.collection("events")
+            .document(eventId)
+            .delete()
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener {
+                onError(it.message ?: "Error")
+            }
+    }
+
+    fun approveEvent(
+        eventId: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+
+        db.collection("events")
+            .document(eventId)
+            .update("aprobado", true)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener {
+                onError(it.message ?: "Error")
+            }
+    }
+
+    fun featureEvent(
+        eventId: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+
+        db.collection("events")
+            .document(eventId)
+            .update("destacado", true)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener {
+                onError(it.message ?: "Error")
+            }
+    }
 }

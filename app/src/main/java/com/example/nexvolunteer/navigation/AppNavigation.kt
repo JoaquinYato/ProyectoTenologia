@@ -13,6 +13,7 @@ import com.example.nexvolunteer.screens.event.CreateEventScreen
 import com.example.nexvolunteer.screens.partner.ManageEventsScreen
 import com.example.nexvolunteer.screens.partner.PartnerDashboardScreen
 import com.example.nexvolunteer.screens.splash.SplashScreen
+import com.example.nexvolunteer.screens.dashboard.DashboardScreen
 @Composable
 fun AppNavigation() {
 
@@ -85,6 +86,11 @@ fun AppNavigation() {
         ) {
 
             ManageEventsScreen()
+        }
+
+        composable("dashboard") {
+
+            DashboardScreen()
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.nexvolunteer.repository
 import com.example.nexvolunteer.model.User
 import com.example.nexvolunteer.utils.RankUtils
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FieldValue
 
 class UserRepository {
 
@@ -45,45 +46,76 @@ class UserRepository {
 
         eventId: String,
 
-        user: User,
+        currentUser: User,
 
         onSuccess: () -> Unit,
 
         onError: (String) -> Unit
+
     ) {
 
-        val newCount =
-            user.eventosAsistidos + 1
+        val updatedEvents =
+            currentUser.eventosAsistidos.toMutableList()
+
+        if (updatedEvents.contains(eventId)) {
+
+            onError("Ya participaste en este evento")
+
+            return
+        }
+
+        updatedEvents.add(eventId)
+
+        val totalEvents =
+            updatedEvents.size
 
         val newRank =
-            RankUtils.getRank(newCount)
+            RankUtils.getRank(totalEvents)
 
-        val newHistory =
-            user.historialEventos + eventId
+        val newXp =
+            RankUtils.getXp(totalEvents)
 
         db.collection("users")
+
             .document(uid)
 
             .update(
 
                 mapOf(
 
-                    "eventosAsistidos" to newCount,
+                    "eventosAsistidos" to updatedEvents,
 
                     "rango" to newRank,
 
-                    "historialEventos" to newHistory
+                    "xp" to newXp
+
                 )
+
             )
 
             .addOnSuccessListener {
 
-                onSuccess()
+                db.collection("events")
+                    .document(eventId)
+                    .update(
+                        "participantes",
+                        FieldValue.increment(1)
+                    )
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
+                    .addOnFailureListener {
+                        onError(
+                            it.message ?: "Error al actualizar participantes"
+                        )
+                    }
             }
 
             .addOnFailureListener {
 
-                onError(it.message ?: "Error")
+                onError(
+                    it.message ?: "Error al registrar asistencia"
+                )
             }
     }
 }

@@ -38,6 +38,7 @@ class UserViewModel : ViewModel() {
         onSuccess: () -> Unit,
 
         onError: (String) -> Unit
+
     ) {
 
         repository.attendEvent(

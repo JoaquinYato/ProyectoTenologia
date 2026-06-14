@@ -8,21 +8,23 @@ data class User(
 
     val apellido: String = "",
 
+    val correo: String = "",
+
     val edad: String = "",
 
     val dni: String = "",
 
     val sexo: String = "",
 
-    val correo: String = "",
-
-    val rango: String = "🌱 Semilla",
-
-    val eventosAsistidos: Int = 0,
+    val intereses: List<String> = emptyList(),
 
     val tipo: String = "usuario",
 
-    val historialEventos: List<String> = emptyList(),
+    val favoritos: List<String> = emptyList(),
 
-    val favoritos: List<String> = emptyList()
+    val eventosAsistidos: List<String> = emptyList(),
+
+    val xp: Int = 0,
+
+    val rango: String = "🌱 EXPLORADOR"
 )
