@@ -174,6 +174,17 @@ fun EventCard(
                     modifier = Modifier.height(16.dp)
                 )
 
+                val user = userViewModel.user.value
+
+                val yaParticipa =
+                    user.eventosAsistidos.contains(event.id)
+
+                Text("👥 ${event.participantes} participantes")
+
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
+
                 /*
                     FAVORITOS
                  */
@@ -249,7 +260,7 @@ fun EventCard(
                  */
 
                 Button(
-
+                    enabled = !yaParticipa,
                     onClick = {
 
                         userViewModel.attendEvent(
@@ -316,7 +327,12 @@ fun EventCard(
 
                 ) {
 
-                    Text("Participar")
+                    Text(
+                        if (yaParticipa)
+                            "Ya inscrito"
+                        else
+                            "Participar"
+                    )
                 }
             }
         }

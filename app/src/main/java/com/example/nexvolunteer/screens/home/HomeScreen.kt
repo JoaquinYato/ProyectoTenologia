@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 @Composable
 fun HomeScreen(navController: NavController) {
 
+
     val viewModel = remember {
 
         EventViewModel()
@@ -44,6 +45,22 @@ fun HomeScreen(navController: NavController) {
 
         viewModel.loadEvents()
     }
+
+    val user =
+        userViewModel.user.value
+
+    val misEventos =
+        viewModel.events.filter {
+
+            user.eventosAsistidos.contains(it.id)
+        }
+
+    val otrosEventos =
+        viewModel.events.filter {
+
+            !user.eventosAsistidos.contains(it.id)
+                    && it.aprobado
+        }
 
     Scaffold(
 
@@ -86,29 +103,47 @@ fun HomeScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-
-                text = "⭐ Eventos Destacados",
-
-                style = MaterialTheme.typography.titleLarge
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            viewModel.events.filter {
-
-                it.destacado
-
-            }.forEach {
-
-                EventCard(it)
-            }
-
             LazyColumn {
 
-                items(viewModel.events) { event ->
+                if (misEventos.isNotEmpty()) {
 
-                    EventCard(event)
+                    item {
+
+                        Text(
+                            text = "🎯 Mis eventos",
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(12.dp)
+                        )
+                    }
+
+                    items(misEventos) {
+
+                        EventCard(it)
+                    }
+
+                    item {
+
+                        Spacer(
+                            modifier = Modifier.height(20.dp)
+                        )
+
+                        Text(
+                            text = "🌎 Explorar eventos",
+                            style = MaterialTheme.typography.titleLarge
+                        )
+
+                        Spacer(
+                            modifier = Modifier.height(12.dp)
+                        )
+                    }
+                }
+
+                items(otrosEventos) {
+
+                    EventCard(it)
                 }
             }
         }
