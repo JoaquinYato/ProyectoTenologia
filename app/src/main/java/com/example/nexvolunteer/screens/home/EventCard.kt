@@ -60,19 +60,19 @@ fun EventCard(
 
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp),
+                .padding(vertical = 6.dp),
 
-            shape = RoundedCornerShape(20.dp),
+            shape = RoundedCornerShape(18.dp),
 
             elevation = CardDefaults.cardElevation(
-                defaultElevation = 6.dp
+                defaultElevation = 3.dp
             )
 
         ) {
 
             Column(
 
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(12.dp)
             ) {
 
                 /*
@@ -89,9 +89,9 @@ fun EventCard(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(200.dp)
+                            .height(150.dp)
                             .clip(
-                                RoundedCornerShape(16.dp)
+                                RoundedCornerShape(12.dp)
                             )
                     )
 
@@ -146,7 +146,7 @@ fun EventCard(
                     DESCRIPCION
                  */
 
-                Text(event.descripcion)
+                Text(text = event.descripcion.take(80), maxLines = 2)
 
                 Spacer(
                     modifier = Modifier.height(10.dp)
@@ -171,7 +171,7 @@ fun EventCard(
                 Text("🏷️ ${event.categoria}")
 
                 Spacer(
-                    modifier = Modifier.height(16.dp)
+                    modifier = Modifier.height(8.dp)
                 )
 
                 val user = userViewModel.user.value
@@ -182,7 +182,7 @@ fun EventCard(
                 Text("👥 ${event.participantes} participantes")
 
                 Spacer(
-                    modifier = Modifier.height(16.dp)
+                    modifier = Modifier.height(8.dp)
                 )
 
                 /*

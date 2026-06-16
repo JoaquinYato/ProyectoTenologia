@@ -111,7 +111,7 @@ fun HomeScreen(navController: NavController) {
 
                         Text(
                             text = "🎯 Mis eventos",
-                            style = MaterialTheme.typography.titleLarge
+                            style = MaterialTheme.typography.titleMedium
                         )
 
                         Spacer(
