@@ -35,15 +35,47 @@ class AuthRepository {
                     .set(newUser)
 
                     .addOnSuccessListener {
+
+                        android.util.Log.d(
+                            "FIRESTORE_TEST",
+                            "USUARIO GUARDADO"
+                        )
+
                         onSuccess()
                     }
 
                     .addOnFailureListener {
+
+                        android.util.Log.e(
+                            "FIRESTORE_TEST",
+                            it.message ?: "ERROR"
+                        )
+
+                        onError(it.message ?: "ERROR")
+                    }
+
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
+
+                    .addOnFailureListener {
+
+                        android.util.Log.e(
+                            "FIREBASE_ERROR",
+                            it.message ?: "Error"
+                        )
+
                         onError(it.message ?: "Error")
                     }
             }
 
             .addOnFailureListener {
+
+                android.util.Log.e(
+                    "FIREBASE_ERROR",
+                    it.message ?: "Error"
+                )
+
                 onError(it.message ?: "Error")
             }
     }
@@ -97,11 +129,23 @@ class AuthRepository {
                     }
 
                     .addOnFailureListener {
+
+                        android.util.Log.e(
+                            "FIREBASE_ERROR",
+                            it.message ?: "Error"
+                        )
+
                         onError(it.message ?: "Error")
                     }
             }
 
             .addOnFailureListener {
+
+                android.util.Log.e(
+                    "FIREBASE_ERROR",
+                    it.message ?: "Error"
+                )
+
                 onError(it.message ?: "Error")
             }
     }
@@ -123,6 +167,12 @@ class AuthRepository {
             }
 
             .addOnFailureListener {
+
+                android.util.Log.e(
+                    "FIREBASE_ERROR",
+                    it.message ?: "Error"
+                )
+
                 onError(it.message ?: "Error")
             }
     }

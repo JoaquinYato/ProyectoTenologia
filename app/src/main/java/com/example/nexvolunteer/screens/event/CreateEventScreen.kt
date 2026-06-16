@@ -243,7 +243,8 @@ fun CreateEventScreen(
 
                     creadorId = uid,
 
-                    creadorTipo = "usuario"
+                    creadorTipo = "partner",
+                    aprobado = true
                 )
 
                 if (selectedImageUri != null) {
@@ -286,13 +287,13 @@ fun CreateEventScreen(
                                         error ->
 
                                     android.util.Log.e(
-                                        "NEX_EVENT",
+                                        "FIREBASE",
                                         error
                                     )
 
                                     Toast.makeText(
                                         context,
-                                        "ERROR: $error",
+                                        error,
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }

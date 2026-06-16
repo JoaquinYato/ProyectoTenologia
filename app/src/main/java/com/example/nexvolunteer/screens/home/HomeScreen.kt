@@ -59,7 +59,12 @@ fun HomeScreen(navController: NavController) {
 
                 Icon(Icons.Default.Add, null)
             }
-        } },
+        }
+        },
+        bottomBar = {
+
+            BottomBar(navController)
+        }
 
     ) { padding ->
 
@@ -101,14 +106,7 @@ fun HomeScreen(navController: NavController) {
 
             LazyColumn {
 
-                items(
-
-                    viewModel.events.filter {
-
-                        it.aprobado
-                    }
-
-                ) { event ->
+                items(viewModel.events) { event ->
 
                     EventCard(event)
                 }

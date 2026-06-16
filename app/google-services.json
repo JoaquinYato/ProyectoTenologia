@@ -1,21 +1,22 @@
 {
   "project_info": {
-    "project_number": "306972864619",
-    "project_id": "hacka-c141a",
-    "storage_bucket": "hacka-c141a.firebasestorage.app"
+    "project_number": "716479592266",
+    "firebase_url": "https://personas-38856-default-rtdb.firebaseio.com",
+    "project_id": "personas-38856",
+    "storage_bucket": "personas-38856.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:306972864619:android:13a0938eae6d7ffee8412e",
+        "mobilesdk_app_id": "1:716479592266:android:594197c185d33d49dcb3b3",
         "android_client_info": {
-          "package_name": "com.example.hacka"
+          "package_name": "com.example.ejer1_firebase"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyByVwU4Z6n1q55qwA2pAsQ8cYMq3QXYCFE"
+          "current_key": "AIzaSyB1ni-K3trWuqXkZxOBcKq2kmjkNoYZHxI"
         }
       ],
       "services": {
@@ -26,7 +27,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:306972864619:android:d366d91e28c77479e8412e",
+        "mobilesdk_app_id": "1:716479592266:android:0a472c8b6a7af8f2dcb3b3",
         "android_client_info": {
           "package_name": "com.example.nexvolunteer"
         }
@@ -34,26 +35,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyByVwU4Z6n1q55qwA2pAsQ8cYMq3QXYCFE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:306972864619:android:5a30b7bce497fb9de8412e",
-        "android_client_info": {
-          "package_name": "com.example.nexvolunter"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyByVwU4Z6n1q55qwA2pAsQ8cYMq3QXYCFE"
+          "current_key": "AIzaSyB1ni-K3trWuqXkZxOBcKq2kmjkNoYZHxI"
         }
       ],
       "services": {
