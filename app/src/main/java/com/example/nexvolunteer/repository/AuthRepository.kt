@@ -65,11 +65,32 @@ class AuthRepository {
 
                 val uid = auth.currentUser?.uid ?: ""
 
-                val newPartner = partner.copy(uid = uid)
-
-                db.collection("partners")
+                db.collection("users")
                     .document(uid)
-                    .set(newPartner)
+                    .set(
+                        mapOf(
+                            "uid" to uid,
+
+                            "nombre" to partner.empresa,
+                            "apellido" to "",
+
+                            "correo" to partner.correo,
+
+                            "edad" to "",
+                            "dni" to partner.ruc,
+                            "sexo" to "",
+
+                            "intereses" to emptyList<String>(),
+                            "favoritos" to emptyList<String>(),
+                            "eventosAsistidos" to emptyList<String>(),
+
+                            "xp" to 0,
+
+                            "tipo" to "partner",
+
+                            "rango" to "🏢 PARTNER"
+                        )
+                    )
 
                     .addOnSuccessListener {
                         onSuccess()

@@ -14,7 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.nexvolunteer.databinding.ActivityLoginBinding
 
-import com.example.nexvolunteer.screens.home.R
+import com.example.nexvolunteer.R
 
 class LoginActivity : AppCompatActivity() {
 

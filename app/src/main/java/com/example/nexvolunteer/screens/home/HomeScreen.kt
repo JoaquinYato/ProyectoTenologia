@@ -48,8 +48,7 @@ fun HomeScreen(navController: NavController) {
     Scaffold(
 
         floatingActionButton = {
-            if (RankUtils.canCreateEvents(userViewModel.user.value.rango,userViewModel.user.value.tipo )
-            ) {
+            if (userViewModel.user.value.tipo == "partner") {
                 FloatingActionButton(
 
                     onClick = {
@@ -61,11 +60,6 @@ fun HomeScreen(navController: NavController) {
                 Icon(Icons.Default.Add, null)
             }
         } },
-
-        bottomBar = {
-
-            BottomBar(navController)
-        }
 
     ) { padding ->
 

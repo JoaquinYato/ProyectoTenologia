@@ -7,8 +7,7 @@ import android.util.Patterns
 import com.example.nexvolunteer.screens.home.data.LoginRepository
 import com.example.nexvolunteer.screens.home.data.Result
 
-import com.example.nexvolunteer.screens.home.R
-
+import com.example.nexvolunteer.R
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()

@@ -64,8 +64,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.13.0"))
     implementation("com.google.firebase:firebase-analytics")
 
-    implementation("com.google.firebase:firebase-analytics")
-
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("androidx.navigation:navigation-compose:2.8.0")
@@ -78,9 +76,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     implementation("io.coil-kt:coil-compose:2.6.0")
-
-    //Diseño
-    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     implementation("androidx.compose.animation:animation")
 

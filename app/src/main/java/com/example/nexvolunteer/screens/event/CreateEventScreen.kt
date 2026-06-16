@@ -283,14 +283,17 @@ fun CreateEventScreen(
 
                                 onError = {
 
+                                        error ->
+
+                                    android.util.Log.e(
+                                        "NEX_EVENT",
+                                        error
+                                    )
+
                                     Toast.makeText(
-
                                         context,
-
-                                        it,
-
+                                        "ERROR: $error",
                                         Toast.LENGTH_LONG
-
                                     ).show()
                                 }
                             )

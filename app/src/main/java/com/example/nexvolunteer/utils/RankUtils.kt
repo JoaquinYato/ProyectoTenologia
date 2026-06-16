@@ -50,9 +50,6 @@ object RankUtils {
         tipo: String
 
     ): Boolean {
-
-        return tipo == "partner" ||
-
-                rango == "👑 LÍDER"
+        return tipo == "partner"
     }
 }
