@@ -1,6 +1,9 @@
 package com.example.nexvolunteer.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.nexvolunteer.model.Event
 import com.example.nexvolunteer.repository.EventRepository
@@ -11,6 +14,10 @@ class EventViewModel : ViewModel() {
 
     val events = mutableStateListOf<Event>()
 
+    var selectedEvent by mutableStateOf(
+        Event()
+    )
+
     fun createEvent(
 
         event: Event,
@@ -18,6 +25,7 @@ class EventViewModel : ViewModel() {
         onSuccess: () -> Unit,
 
         onError: (String) -> Unit
+
     ) {
 
         repository.createEvent(
@@ -39,6 +47,27 @@ class EventViewModel : ViewModel() {
                 events.clear()
 
                 events.addAll(it)
+            },
+
+            onError = {
+
+            }
+        )
+    }
+
+    fun loadEvent(
+
+        eventId: String
+
+    ) {
+
+        repository.getEventById(
+
+            eventId,
+
+            onSuccess = {
+
+                selectedEvent = it
             },
 
             onError = {

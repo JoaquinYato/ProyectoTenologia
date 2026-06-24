@@ -14,6 +14,9 @@ import com.example.nexvolunteer.screens.partner.ManageEventsScreen
 import com.example.nexvolunteer.screens.partner.PartnerDashboardScreen
 import com.example.nexvolunteer.screens.splash.SplashScreen
 import com.example.nexvolunteer.screens.dashboard.DashboardScreen
+import com.example.nexvolunteer.screens.event.EventDetailScreen
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 @Composable
 fun AppNavigation() {
 
@@ -56,7 +59,7 @@ fun AppNavigation() {
 
         composable(Routes.Search.route) {
 
-            SearchScreen()
+            SearchScreen(navController)
         }
 
         composable(Routes.Chat.route) {
@@ -91,6 +94,23 @@ fun AppNavigation() {
         composable("dashboard") {
 
             DashboardScreen()
+        }
+        composable(
+            route = Routes.EventDetail.route,
+            arguments = listOf(
+                navArgument("eventId") {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+
+            val eventId =
+                backStackEntry.arguments
+                    ?.getString("eventId") ?: ""
+
+            EventDetailScreen(
+                eventId = eventId
+            )
         }
     }
 }

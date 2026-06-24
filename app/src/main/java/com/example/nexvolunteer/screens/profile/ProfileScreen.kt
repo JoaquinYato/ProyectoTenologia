@@ -107,7 +107,7 @@ fun ProfileScreen() {
 
         } else {
 
-            user.eventosAsistidos.forEach {
+            viewModel.attendedEvents.forEach { event ->
 
                 Card(
 
@@ -117,12 +117,23 @@ fun ProfileScreen() {
 
                 ) {
 
-                    Text(
-
-                        text = "Evento ID: $it",
+                    Column(
 
                         modifier = Modifier.padding(16.dp)
-                    )
+
+                    ) {
+
+                        Text(
+                            text = event.titulo,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+
+                        Text("📍 ${event.ubicacion}")
+
+                        Text("📅 ${event.fecha}")
+
+                        Text("🏷️ ${event.categoria}")
+                    }
                 }
             }
         }

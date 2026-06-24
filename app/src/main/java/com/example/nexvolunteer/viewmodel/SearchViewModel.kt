@@ -37,21 +37,23 @@ class SearchViewModel : ViewModel() {
 
     fun searchEvents(query: String) {
 
+        if (query.isBlank()) {
+
+            filteredEvents.clear()
+            filteredEvents.addAll(allEvents)
+
+            return
+        }
+
         val result = allEvents.filter {
 
-            it.titulo.contains(
-                query,
-                ignoreCase = true
-            ) ||
-
-                    it.categoria.contains(
-                        query,
-                        ignoreCase = true
-                    )
+            it.titulo.contains(query, true) ||
+                    it.categoria.contains(query, true) ||
+                    it.ubicacion.contains(query, true) ||
+                    it.descripcion.contains(query, true)
         }
 
         filteredEvents.clear()
-
         filteredEvents.addAll(result)
     }
 
@@ -65,32 +67,5 @@ class SearchViewModel : ViewModel() {
         filteredEvents.clear()
 
         filteredEvents.addAll(result)
-    }
-
-    fun addFavorite(
-
-        uid: String,
-
-        eventId: String,
-
-        favorites: List<String>,
-
-        onSuccess: () -> Unit,
-
-        onError: (String) -> Unit
-    ) {
-
-        repository.addFavorite(
-
-            uid,
-
-            eventId,
-
-            favorites,
-
-            onSuccess,
-
-            onError
-        )
     }
 }

@@ -11,9 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.nexvolunteer.screens.home.EventCard
 import com.example.nexvolunteer.viewmodel.SearchViewModel
+import androidx.navigation.NavController
 
 @Composable
-fun SearchScreen() {
+fun SearchScreen(navController: NavController) {
 
     val viewModel = remember {
 
@@ -60,7 +61,7 @@ fun SearchScreen() {
 
             label = {
 
-                Text("Buscar")
+                Text("Buscar por nombre, categoria o ubicación")
             },
 
             modifier = Modifier.fillMaxWidth()
@@ -116,7 +117,10 @@ fun SearchScreen() {
 
             items(viewModel.filteredEvents) {
 
-                EventCard(it)
+                EventCard(
+                    event = it,
+                    navController = navController
+                )
             }
         }
     }

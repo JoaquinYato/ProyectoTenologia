@@ -121,7 +121,10 @@ fun HomeScreen(navController: NavController) {
 
                     items(misEventos) {
 
-                        EventCard(it)
+                        EventCard(
+                            event = it,
+                            navController = navController
+                        )
                     }
 
                     item {
@@ -143,7 +146,10 @@ fun HomeScreen(navController: NavController) {
 
                 items(otrosEventos) {
 
-                    EventCard(it)
+                    EventCard(
+                        event = it,
+                        navController = navController
+                    )
                 }
             }
         }

@@ -110,4 +110,41 @@ class EventRepository {
                 onError(it.message ?: "Error")
             }
     }
+
+    fun getEventById(
+
+        eventId: String,
+
+        onSuccess: (Event) -> Unit,
+
+        onError: (String) -> Unit
+
+    ) {
+
+        db.collection("events")
+
+            .document(eventId)
+
+            .get()
+
+            .addOnSuccessListener {
+
+                val event =
+                    it.toObject(Event::class.java)
+
+                if (event != null) {
+
+                    onSuccess(event)
+
+                } else {
+
+                    onError("Evento no encontrado")
+                }
+            }
+
+            .addOnFailureListener {
+
+                onError(it.message ?: "Error")
+            }
+    }
 }

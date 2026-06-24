@@ -28,4 +28,15 @@ sealed class Routes(val route: String) {
         Routes("splash")
 
     object Dashboard : Routes("dashboard")
+
+    object EventDetail :
+        Routes("eventDetail/{eventId}") {
+
+        fun createRoute(
+            eventId: String
+        ): String {
+
+            return "eventDetail/$eventId"
+        }
+    }
 }

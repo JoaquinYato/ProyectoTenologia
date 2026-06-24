@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -16,16 +15,18 @@ import coil.compose.AsyncImage
 import com.example.nexvolunteer.model.Event
 import com.example.nexvolunteer.notifications.NotificationHelper
 import com.example.nexvolunteer.notifications.ReminderHelper
-import com.example.nexvolunteer.viewmodel.SearchViewModel
 import com.example.nexvolunteer.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
+import androidx.navigation.NavController
+import com.example.nexvolunteer.navigation.Routes
 
 @Composable
 fun EventCard(
 
-    event: Event
+    event: Event,
+    navController: NavController
 ) {
 
     val context = LocalContext.current
@@ -33,11 +34,6 @@ fun EventCard(
     val userViewModel = remember {
 
         UserViewModel()
-    }
-
-    val searchViewModel = remember {
-
-        SearchViewModel()
     }
 
     val uid =
@@ -58,14 +54,21 @@ fun EventCard(
 
         Card(
 
+            onClick = {
+
+                navController.navigate(
+                    Routes.EventDetail.createRoute(event.id)
+                )
+            },
+
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 6.dp),
 
-            shape = RoundedCornerShape(18.dp),
+            shape = RoundedCornerShape(16.dp),
 
             elevation = CardDefaults.cardElevation(
-                defaultElevation = 3.dp
+                defaultElevation = 4.dp
             )
 
         ) {
@@ -89,7 +92,7 @@ fun EventCard(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(150.dp)
+                            .height(120.dp)
                             .clip(
                                 RoundedCornerShape(12.dp)
                             )
@@ -135,7 +138,7 @@ fun EventCard(
 
                     style = MaterialTheme
                         .typography
-                        .titleLarge
+                        .titleMedium
                 )
 
                 Spacer(
@@ -146,7 +149,7 @@ fun EventCard(
                     DESCRIPCION
                  */
 
-                Text(text = event.descripcion.take(80), maxLines = 2)
+                Text(text = event.descripcion.take(60), maxLines = 2)
 
                 Spacer(
                     modifier = Modifier.height(10.dp)
@@ -183,76 +186,6 @@ fun EventCard(
 
                 Spacer(
                     modifier = Modifier.height(8.dp)
-                )
-
-                /*
-                    FAVORITOS
-                 */
-
-                IconButton(
-
-                    onClick = {
-
-                        val user =
-                            userViewModel.user.value
-
-                        searchViewModel.addFavorite(
-
-                            uid,
-
-                            event.id,
-
-                            user.favoritos,
-
-                            onSuccess = {
-
-                                Toast.makeText(
-
-                                    context,
-
-                                    "Agregado a favoritos",
-
-                                    Toast.LENGTH_LONG
-
-                                ).show()
-
-                                NotificationHelper.showNotification(
-
-                                    context,
-
-                                    "Favorito agregado",
-
-                                    "${event.titulo} fue agregado a favoritos"
-                                )
-                            },
-
-                            onError = {
-
-                                Toast.makeText(
-
-                                    context,
-
-                                    it,
-
-                                    Toast.LENGTH_LONG
-
-                                ).show()
-                            }
-                        )
-                    }
-
-                ) {
-
-                    Icon(
-
-                        Icons.Default.Favorite,
-
-                        contentDescription = null
-                    )
-                }
-
-                Spacer(
-                    modifier = Modifier.height(10.dp)
                 )
 
                 /*
